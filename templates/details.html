@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{user.first_name}} {{user.last_name}}</h1>
+<p>
+   {% if user.image_url %}
+   <div><img src={{user.image_url}} width="80" height="70"></div> 
+   {% else %}
+   <div><img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=800" width="80" height="70"></div>
+   {% endif %}
+</p>
+
+<a href="/users/{{user.id}}/edit">Edit</a>
+<a href="/users/{{user.id}}/delete">Delete</a>
+
+<h2>Posts</h2>
+<ul>
+   {% for post in posts %}
+   <li>
+      <a href="/posts/{{post.id}}">{{post.title}}</a>
+   </li>
+   {% endfor %}
+</ul>
+<a href="/users/{{user.id}}/posts/new">Add Post</a>
+{% endblock %}
